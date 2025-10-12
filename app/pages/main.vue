@@ -1,5 +1,6 @@
 <template>
-  <div class="background">
+  <div class="background">    
+    <NavBar />
     <span class="status">disconnected</span>
     <div class="dialPad">
       <DialPad />
