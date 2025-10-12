@@ -7,7 +7,16 @@
   --colorBlue: #dbeafe;
   --colorGreen: #22c55e;
   --colorRed: #ef4444;  
+	--colorGrayLight: #e5e7eb;
 }
+
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -42,6 +51,13 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background-color: var(--white);
 }
 ol, ul {
 	list-style: none;
