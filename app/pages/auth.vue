@@ -1,11 +1,15 @@
 <template>
   <div class="background">
-    <h2>Sign in to ConnectCALL</h2>
-    <form class="loginContainer">
-      <input type="email" placeholder="Email address" />
-      <hr />
-      <input type="password" placeholder="Password" />
-    </form>
+    <span class="title">Sign in to ConnectCALL</span>
+    <div class="loginContainer">
+      <div class="inputsContainer">
+        <InputRegularInput type="email" placeholder="Email address" />
+        <Divider />
+        <InputRegularInput type="password" placeholder="Password" />
+      </div>
+      <span class="btnForgot">Forgot password?</span>      
+      <ButtonRegularButton title="Sign in" />
+    </div>
   </div>
 </template>
 <style scoped>
@@ -19,26 +23,25 @@
   }
   .loginContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    justify-content: end;
+    align-items: end;
+    margin: 20px;
+    gap: 20px;
+  }
+  .inputsContainer {
     border: 1px solid var(--colorGrayLight);
-    border-radius: var(--borderRadius);            
-    overflow: hidden;    
+    border-radius: var(--borderRadius);    
+    overflow: hidden;   
     width: 500px;
-    height: 100px;    
-  }    
-  .loginContainer>input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    font-size: 16px;    
-    background-color: transparent;
+    height: 115px;
   }
-  hr {    
-    border: 1px solid var(--colorGrayLight);
-    margin: 0;
-    flex-shrink: 0;
+  .btnForgot {
+    color: var(--buttonColor);
+    cursor: pointer;
   }
-  h2 {
+  .title {
     font-weight: bold;
-  }
+    font-size: x-large;
+  }  
 </style>
