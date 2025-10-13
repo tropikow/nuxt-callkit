@@ -3,7 +3,7 @@
     <div class="left">      
       <span>CallConnect</span>
     </div>
-    <div class="right">
+    <div class="setting">      
       <Icon />
     </div>
   </div>
@@ -19,11 +19,19 @@
     padding: 10px;
     height: 60px;
     border-bottom: 1px solid var(--colorGrayLight);    
+    overflow: hidden;
   }
   .left {    
     gap: 10px;
   }
   .left > span {
     font-weight: bold;
+  }
+  .setting {
+    display: flex;
+    justify-content: center;    
+    align-content: center;
+    margin: 0;    
+    padding: 20px;    
   }
 </style>

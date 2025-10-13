@@ -37,7 +37,7 @@
     height: 115px;
   }
   .btnForgot {
-    color: var(--buttonColor);
+    color: var(--colorBlue);
     cursor: pointer;
   }
   .title {

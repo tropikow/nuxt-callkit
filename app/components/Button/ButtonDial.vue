@@ -12,7 +12,7 @@
 <style scoped>
   .buttonContainer {    
     text-align: center;
-    background-color: var(--colorBlue);
+    background-color: var(--colorBlueLight);
     padding: 15px;
     border-radius: 25px;
     cursor: pointer;

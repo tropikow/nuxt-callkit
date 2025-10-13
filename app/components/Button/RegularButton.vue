@@ -15,7 +15,7 @@
   button {
     border: none;
     outline: none;
-    background-color: var(--buttonColor);
+    background-color: var(--colorBlue);
     padding: 20px;
     border-radius: var(--borderRadius);
     width: 100%;

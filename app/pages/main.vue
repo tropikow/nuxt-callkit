@@ -10,6 +10,7 @@
       </div>
     </div>
     <span class="buttonSignOut">Sign out</span>
+    <ModalInProgressCall />
   </div>
 </template>
 <style scoped>
