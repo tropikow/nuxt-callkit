@@ -21,7 +21,7 @@
   .iconActionContainer {    
     border: none;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.18);
-    padding: 10px;
+    padding: 20px;
     background-color: white;
     border-radius: 50%;
     cursor: pointer;      

@@ -3,23 +3,39 @@
     <div class="iconContainer">
       <IconsPhone />
     </div>
-    <div>
-
+    <div class="titleContainer">
+      <span>Call in progress</span>
     </div>
-    <span>Call in progress</span>
-    <span>00:05</span>
-    <ButtonCallAction />    
+    <div class="timeContainer">
+      <span>00:05</span>
+    </div>
+    <div class="containerButtons">
+      <div class="buttonContainer">
+        <ButtonCallAction />
+      </div>
+      <div class="buttonContainer">
+        <ButtonCallAction />
+      </div>
+      <div class="buttonContainer">
+        <ButtonCallAction />
+      </div>
+    </div>
   </div>
 </template>
 <style scoped>
   .modalContainer {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     position: fixed;
     border: 0.5px solid var(--colorGrayLight);
     border-radius: 20px;
     background-color: var(--colorWhite);
+    width: 400px;
+    height: 400px;
+    z-index: 1000;    
+    padding: 20px;
   }
   .iconContainer {
     display: flex;
@@ -28,4 +44,36 @@
     padding: 20px;
     border-radius: 50%;
   }
-</style>
+  .titleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .titleContainer > span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .timeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .timeContainer > span {
+    font-size: xx-large;
+    font-weight: lighter;
+    color: var(--primaryText);
+  }
+  .containerButtons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;    
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;     
+  }
+</style>  
