@@ -1,3 +1,6 @@
+<script setup lang="ts">
+  import { initAuth } from '#imports';
+</script>
 <template>
   <div class="background">
     <span class="title">Sign in to ConnectCALL</span>
@@ -8,7 +11,7 @@
         <InputRegularInput type="password" placeholder="Password" />
       </div>
       <span class="btnForgot">Forgot password?</span>      
-      <ButtonRegularButton title="Sign in" />
+      <ButtonRegularButton title="Sign in" @click="initAuth" />
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
   const { title } = props;
 </script>
 <template>
-  <button>
+  <button @click="$emit('click')">
     <span>
       {{ title }}
     </span>

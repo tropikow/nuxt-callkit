@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { destroyAuth } from '@/utils/manageAuth'
   const status = ref<string>('disconnected')  
   const initCall = () => {
     status.value = 'inProgress'
@@ -18,7 +19,7 @@
         <ButtonCall type="end" @click="endCall" />        
       </div>
     </div>
-    <span class="buttonSignOut">Sign out</span>
+    <span class="buttonSignOut" @click="destroyAuth">Sign out</span>
     <ModalInProgressCall v-if="status === 'inProgress'" @endCall="endCall" />
   </div>
 </template>
@@ -48,5 +49,6 @@
   }  
   .buttonSignOut {
     color: var(--colorBlue);    
+    cursor: pointer;
   }
 </style>
