@@ -1,3 +1,12 @@
+<script setup lang="ts">
+  const status = ref<string>('disconnected')  
+  const initCall = () => {
+    status.value = 'inProgress'
+  }
+  const endCall = () => {
+    status.value = 'disconnected'
+  }
+</script>
 <template>
   <div class="background">    
     <NavBar />
@@ -5,12 +14,12 @@
     <div class="dialPad">
       <DialPad />
       <div class="buttonActionCallContainer">        
-        <ButtonCall type="dial" />
-        <ButtonCall type="end" />        
+        <ButtonCall type="dial" @click="initCall" />
+        <ButtonCall type="end" @click="endCall" />        
       </div>
     </div>
     <span class="buttonSignOut">Sign out</span>
-    <ModalInProgressCall />
+    <ModalInProgressCall v-if="status === 'inProgress'" @endCall="endCall" />
   </div>
 </template>
 <style scoped>
@@ -23,7 +32,7 @@
     height: 100%;    
   }
   .status {
-    color: var(--buttonColor);
+    color: var(--colorBlue);
   }
   .dialPad {
     width: 300px;
@@ -38,6 +47,6 @@
     gap: 10px;
   }  
   .buttonSignOut {
-    color: var(--buttonColor);    
+    color: var(--colorBlue);    
   }
 </style>

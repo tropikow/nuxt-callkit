@@ -17,7 +17,7 @@
         <ButtonCallAction type="volume" />
       </div>
       <div class="buttonContainer">
-        <ButtonCallAction type="end" />
+        <ButtonCallAction type="end" @click="$emit('endCall')" />
       </div>
     </div>
   </div>

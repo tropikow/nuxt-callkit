@@ -29,7 +29,7 @@
   }
 </script>
 <template>
-  <div class="container" :style="{ 'background-color': returnBackgroundColor() }">    
+  <div class="container" :style="{ 'background-color': returnBackgroundColor() }" @click="$emit('click')">    
     <span>
       {{ returnTitle() }}
     </span>
@@ -42,6 +42,7 @@
     border-radius: 20px;
     text-align: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
   }
   .container > span {
     color: white;
