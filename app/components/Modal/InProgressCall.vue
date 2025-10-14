@@ -11,13 +11,13 @@
     </div>
     <div class="containerButtons">
       <div class="buttonContainer">
-        <ButtonCallAction />
+        <ButtonCallAction type="mute" />
       </div>
       <div class="buttonContainer">
-        <ButtonCallAction />
+        <ButtonCallAction type="volume" />
       </div>
       <div class="buttonContainer">
-        <ButtonCallAction />
+        <ButtonCallAction type="end" />
       </div>
     </div>
   </div>
