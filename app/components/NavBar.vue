@@ -1,9 +1,15 @@
+<script setup lang="ts">
+  const router = useRouter()
+  const redirectToSetting = () => {
+    router.push('/setting')
+  }
+</script>
 <template>
   <div class="container">
     <div class="left">      
       <span>CallConnect</span>
     </div>
-    <div class="setting">      
+    <div class="setting" @click="redirectToSetting">      
       <Icon />
     </div>
   </div>

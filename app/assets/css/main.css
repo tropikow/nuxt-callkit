@@ -1,6 +1,6 @@
 :root {
   --borderRadius: 8px;
-  --colorWhite: #F9F9F9;
+  --colorWhite: #f0f0f0;
   --primaryText: #333333;
   --secondaryText: #888888;
   --colorBlue: #3b82f6;
@@ -34,7 +34,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-  font-family: sans-serif;  
+  	font-family: sans-serif;  
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
