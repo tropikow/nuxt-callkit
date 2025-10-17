@@ -22,7 +22,7 @@
         <span>Call in progress</span>
       </div>
       <div class="timeContainer">
-        <span>{{ accountTimeMinutes }}:{{ accountTimeSeconds }}</span>
+        <span>{{ accountTimeMinutes < 10 ? 0 : '' }}{{ accountTimeMinutes }}:{{ accountTimeSeconds < 10 ? 0 : '' }}{{ accountTimeSeconds }}</span>
       </div>
       <div class="containerButtons">
         <div class="buttonContainer">
