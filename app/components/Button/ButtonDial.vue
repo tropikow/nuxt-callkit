@@ -5,7 +5,7 @@
   const { value } = props;
 </script>
 <template>
-  <div class="buttonContainer">
+  <div class="buttonContainer" @click="$emit('click',value)">
     {{ value }}
   </div>
 </template>

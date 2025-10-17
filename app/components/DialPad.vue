@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  const buttonList = ['1','2','3','4','5','6','7','8','9','+','0','#']
+  const buttonList = ['1','2','3','4','5','6','7','8','9','+','0','#']    
 </script>
 <template>
   <div class="container">
     <div v-for="button in buttonList">
-      <ButtonDial :value="button" />
+      <ButtonDial :value="button" @click="$emit('click', $event)" />
     </div>
   </div>  
 </template>

@@ -1,3 +1,17 @@
+<script setup lang="ts">
+  const accountTimeSeconds = ref<number>(0)
+  const accountTimeMinutes = ref<number>(0)
+  onMounted(() => {
+    setInterval(() => {      
+      if(accountTimeSeconds.value < 59) {
+        accountTimeSeconds.value++
+      } else {
+        accountTimeMinutes.value++
+        accountTimeSeconds.value = 0
+      }
+    },1000)
+  })
+</script>
 <template>
   <div class="inProgressCallBackground">
     <div class="modalContainer">
@@ -8,7 +22,7 @@
         <span>Call in progress</span>
       </div>
       <div class="timeContainer">
-        <span>00:05</span>
+        <span>{{ accountTimeMinutes }}:{{ accountTimeSeconds }}</span>
       </div>
       <div class="containerButtons">
         <div class="buttonContainer">

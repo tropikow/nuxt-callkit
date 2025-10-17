@@ -1,19 +1,26 @@
 <script setup lang="ts">
   import { destroyAuth } from '@/utils/manageAuth'
   const status = ref<string>('disconnected')  
+  const diadledNumber = ref<any[]>([])
   const initCall = () => {
     status.value = 'inProgress'
   }
   const endCall = () => {
     status.value = 'disconnected'
+  }  
+  const handleClick = (value: any) => {
+    if(typeof value === 'string') {
+      diadledNumber.value.push(value)
+    }
   }
 </script>
 <template>
   <div class="background">    
     <NavBar />
     <span class="status">disconnected</span>
+    <span style="color: var(--secondaryText); font-size: 18px; margin-top: 25px;">{{ diadledNumber.join(' ') }}</span>
     <div class="dialPad">
-      <DialPad />
+      <DialPad @click="handleClick" />
       <div class="buttonActionCallContainer">        
         <ButtonCall type="dial" @click="initCall" />
         <ButtonCall type="end" @click="endCall" />        
@@ -37,7 +44,7 @@
   }
   .dialPad {
     width: 300px;
-    margin-top: 50px;    
+    margin-top: 25px;    
     margin-bottom: 50px;    
   }
   .buttonActionCallContainer {
