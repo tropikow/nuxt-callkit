@@ -1,5 +1,5 @@
 :root {
-  --borderRadius: 8px;
+  --borderRadius: 16px;
   --colorWhite: #f0f0f0;
   --primaryText: #333333;
   --secondaryText: #888888;
@@ -45,10 +45,8 @@ body {
 	line-height: 1;
 	margin: 0;
 	padding: 0;
-	position: fixed;
 	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
+	min-height: 100vh;
 	background-color: var(--colorWhite);	
 }
 ol, ul {

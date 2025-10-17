@@ -1,3 +1,6 @@
+<script setup lang="ts">
+  import { destroyAuth } from '#imports';
+</script>
 <template>
   <div class="settingsBackground">
     <div class="settingsBackgroundContainer">
@@ -11,7 +14,7 @@
             <span class="label">johndoe@getlavado.com</span>
           </div>
         </div>
-        <span class="btnLogout">Log Out</span>        
+        <span class="btnLogout" @click="destroyAuth">Log Out</span>        
       </div>      
       <div class="settingsSection">
         <span class="subTitle">General</span>
@@ -109,5 +112,6 @@
     color: var(--colorBlue);
     padding: 10px 20px;
     border-radius: var(--borderRadius);    
+    cursor: pointer;
   }
 </style>

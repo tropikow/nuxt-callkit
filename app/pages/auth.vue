@@ -1,5 +1,9 @@
 <script setup lang="ts">
   import { initAuth } from '#imports';
+  const router = useRouter()
+  const redirectToRecoverPage = () => {
+    router.push('/recoverPassword')
+  }
 </script>
 <template>
   <div class="background">
@@ -10,7 +14,7 @@
         <Divider />
         <InputRegularInput type="password" placeholder="Password" />
       </div>
-      <span class="btnForgot">Forgot password?</span>      
+      <span class="btnForgot" @click="redirectToRecoverPage">Forgot password?</span>      
       <ButtonRegularButton title="Sign in" @click="initAuth" />
     </div>
   </div>
@@ -22,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100%;    
+    height: 100vh;        
   }
   .loginContainer {
     display: flex;
