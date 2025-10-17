@@ -16,7 +16,7 @@
     border: none;
     outline: none;
     background-color: var(--colorBlue);
-    padding: 20px;
+    padding: 10px;
     border-radius: var(--borderRadius);
     width: 100%;
     cursor: pointer;

@@ -1,41 +1,51 @@
 <template>
-  <div class="modalContainer">
-    <div class="iconContainer">
-      <IconsPhone />
-    </div>
-    <div class="titleContainer">
-      <span>Call in progress</span>
-    </div>
-    <div class="timeContainer">
-      <span>00:05</span>
-    </div>
-    <div class="containerButtons">
-      <div class="buttonContainer">
-        <ButtonCallAction type="mute" />
+  <div class="inProgressCallBackground">
+    <div class="modalContainer">
+      <div class="iconContainer">
+        <IconsPhone />
       </div>
-      <div class="buttonContainer">
-        <ButtonCallAction type="volume" />
+      <div class="titleContainer">
+        <span>Call in progress</span>
       </div>
-      <div class="buttonContainer">
-        <ButtonCallAction type="end" @click="$emit('endCall')" />
+      <div class="timeContainer">
+        <span>00:05</span>
+      </div>
+      <div class="containerButtons">
+        <div class="buttonContainer">
+          <ButtonCallAction type="mute" />
+        </div>
+        <div class="buttonContainer">
+          <ButtonCallAction type="volume" />
+        </div>
+        <div class="buttonContainer">
+          <ButtonCallAction type="end" @click="$emit('endCall')" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style scoped>
+  .inProgressCallBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100vh;    
+  }
   .modalContainer {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     position: fixed;
-    border: 0.5px solid var(--colorGrayLight);
+    border: 1px solid var(--colorGrayLight);
     border-radius: 20px;
     background-color: var(--colorWhite);
     width: 400px;
     height: 400px;
     z-index: 1000;    
-    padding: 20px;
+    padding: 20px;    
   }
   .iconContainer {
     display: flex;

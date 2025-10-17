@@ -13,7 +13,7 @@
   .buttonContainer {    
     text-align: center;
     background-color: var(--colorBlueLight);
-    padding: 15px;
+    padding: 10px;
     border-radius: 25px;
     cursor: pointer;
   }

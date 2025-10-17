@@ -20,6 +20,6 @@
     outline: none;
     margin: 0;
     width: 100%;    
-    padding: 20px;        
+    padding: 10px;        
   }
 </style>

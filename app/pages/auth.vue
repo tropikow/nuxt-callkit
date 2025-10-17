@@ -41,7 +41,7 @@
     border-radius: var(--borderRadius);    
     overflow: hidden;   
     width: 500px;
-    height: 115px;
+    height: auto;
   }
   .btnForgot {
     color: var(--colorBlue);
