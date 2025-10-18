@@ -7,15 +7,13 @@
 </script>
 <template>
   <div class="background">
-    <span class="title">Sign in to ConnectCALL</span>
-    <div class="loginContainer">
-      <div class="inputsContainer">
-        <InputRegularInput type="email" placeholder="Email address" />
-        <Divider />
-        <InputRegularInput type="password" placeholder="Password" />
+    <span class="title">Sign in to ConnectCALL</span>        
+    <div style="display: flex; flex-direction: column; gap: 20px; width: 500px; margin: 20px;">
+      <FormsEmailAndPassword />
+      <div style="text-align: end;">
+        <ButtonLinkButton title="Forgot Password?" @click="redirectToRecoverPage" />
       </div>
-      <span class="btnForgot" @click="redirectToRecoverPage">Forgot password?</span>      
-      <ButtonRegularButton title="Sign in" @click="initAuth" />
+      <ButtonRegularButton title="Sign In" @click="initAuth" />
     </div>
   </div>
 </template>
@@ -27,22 +25,7 @@
     align-items: center;
     width: 100%;
     height: 100vh;        
-  }
-  .loginContainer {
-    display: flex;
-    flex-direction: column;    
-    justify-content: end;
-    align-items: end;
-    margin: 20px;
-    gap: 20px;
-  }
-  .inputsContainer {
-    border: 1px solid var(--colorGrayLight);
-    border-radius: var(--borderRadius);    
-    overflow: hidden;   
-    width: 500px;
-    height: auto;
-  }
+  }  
   .btnForgot {
     color: var(--colorBlue);
     cursor: pointer;

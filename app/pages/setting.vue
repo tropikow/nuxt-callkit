@@ -1,5 +1,21 @@
 <script setup lang="ts">
   import { destroyAuth } from '#imports';
+  const deviceModel = ref<string>('')  
+  onMounted(() => {
+    if(navigator.userAgent.includes('Macintosh')) {
+      deviceModel.value = 'macOS'
+    } else if(navigator.userAgent.includes('ThinkPad')) {
+      deviceModel.value = 'ThinkPad'
+    } else if(navigator.userAgent.includes('MacBook')) {
+      deviceModel.value = 'MacBook'
+    } else if(navigator.userAgent.includes('Win')) {
+      deviceModel.value = 'Windows'
+    } else if(navigator.userAgent.includes('Android')) {
+      deviceModel.value = 'Android'
+    } else if(navigator.userAgent.includes('iOS')) {
+      deviceModel.value = 'iPhone/iPad'
+    }
+  })
 </script>
 <template>
   <div class="settingsBackground">
@@ -29,23 +45,20 @@
         </InputSettingInput>
         <span class="subTitle">Audio & Video</span>
         <InputSettingInput iconProp="microphone" keyProp="Microphone">
-          <span style="color: var(--secondaryText);">Default - MacBook Pro Microphone</span>
+          <span style="color: var(--secondaryText);">Default - {{ deviceModel }} Microphone</span>
         </InputSettingInput>
         <InputSettingInput iconProp="speaker" keyProp="speaker">
-          <span style="color: var(--secondaryText);">Default - MacBook Pro Speakers</span>
-        </InputSettingInput>
-        <InputSettingInput iconProp="video-recorder" keyProp="Camera">
-          <span style="color: var(--secondaryText);">Default - FaceTime HD Camera</span>
-        </InputSettingInput>
+          <span style="color: var(--secondaryText);">Default - {{ deviceModel }} Speakers</span>
+        </InputSettingInput>        
         <InputSettingInput iconProp="noise" keyProp="Noise Cancellation">
           <InputToogleInput />
         </InputSettingInput>
         <span class="subTitle">Privacy</span>
-        <InputSettingInput iconProp="blocked" keyProp="Manage blocked numbers">
-          <InputToogleInput />
+        <InputSettingInput iconProp="blocked" keyProp="Manage blocked numbers">                    
+          <IconsArrowRight />
         </InputSettingInput>
-        <InputSettingInput iconProp="security" keyProp="Privacy Policy">
-          <InputToogleInput />
+        <InputSettingInput iconProp="security" keyProp="Privacy Policy">          
+          <IconsArrowRight />
         </InputSettingInput>
       </div>
     </div>
@@ -60,6 +73,7 @@
     height: 100%;
     min-height: 100vh;
     overflow-y: auto;    
+    padding: 20px;
   }
   .settingsBackgroundContainer {
     display: flex;

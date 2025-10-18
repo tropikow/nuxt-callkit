@@ -11,7 +11,7 @@
     border: 1px solid var(--colorGrayLight);
     border-radius: var(--borderRadius);
     overflow: hidden;
-    padding: 10px 10px;
+    padding: 10px;
     width: 100%;
   }
   .inputContainer > input {

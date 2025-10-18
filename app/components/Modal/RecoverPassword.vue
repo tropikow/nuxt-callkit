@@ -1,4 +1,4 @@
-<script setup lang="ts">  
+<script setup lang="ts">
   const router = useRouter()
   const redirectToAuth = () => {
     router.push('/auth')
@@ -10,9 +10,9 @@
     <div class="modalContainer">
       <h2 class="title">Forgot password?</h2>
       <span class="label">Enter your email address and we'll send you a link to reset your password</span>       
-       <InputUniqueInput />
-       <ButtonRegularButton title="Send Reset Link" />
-       <span class="btnBackToLogin" @click="redirectToAuth">Back to Login</span>
+      <InputField />
+      <ButtonRegularButton title="Send Reset Link" />
+      <ButtonLinkButton title="Back to Login" @click="redirectToAuth" />       
     </div>
   </div>
 </template>
@@ -44,9 +44,5 @@
     padding: 40px;
     width: 400px;
     text-align: center;        
-  }
-  .btnBackToLogin {
-    color: var(--colorBlue);
-    cursor: pointer;
-  }
+  }  
 </style>

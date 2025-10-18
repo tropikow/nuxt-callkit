@@ -25,8 +25,8 @@
         <ButtonCall type="dial" @click="initCall" />
         <ButtonCall type="end" @click="endCall" />        
       </div>
-    </div>
-    <span class="buttonSignOut" @click="destroyAuth">Sign out</span>
+    </div>    
+    <ButtonLinkButton title="Sign Out" @click="destroyAuth" />
     <ModalInProgressCall v-if="status === 'inProgress'" @endCall="endCall" />
   </div>
 </template>
