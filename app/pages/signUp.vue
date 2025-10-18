@@ -1,6 +1,7 @@
 <script setup lang="ts">
   const email = ref<string>('')
-  const password = ref<string>('')
+  const password = ref<string>('')  
+  const confirmPassword = ref<string>('')
   const tel = ref<string>('')
   const handleEmail = (value: any) => {
     email.value = value.target.value;
@@ -10,6 +11,14 @@
   }
   const handlePhoneNumber = (value: any) => {
     tel.value = value.target.value
+  } 
+  const handleConfirmPassword = (value: any) => {
+    confirmPassword.value = value
+  }
+  const validatePassword = () => {
+    if(password.value !== confirmPassword.value) {
+      console.log('non')
+    }
   }
 </script>
 <template>
@@ -19,7 +28,7 @@
       <div class="signUpContain">
         <InputField icon="" :value="email" @input="handleEmail" />        
         <InputField type="password" placeholder="Password" icon="" @input="handlePassword" />
-        <InputField type="password" placeholder="Confirm Password" icon="" />
+        <InputField type="password" placeholder="Confirm Password" icon="" @input="handleConfirmPassword" @blur="validatePassword" />
         <InputField type="tel" placeholder="Phone Number" icon="" @input="handlePhoneNumber" />
         <span class="label" style="line-height: 18px">Your information is used solely for security and authentication purposes within ConnectCALL. You have full control over your data, including the option to delete it any time.</span>
         <ButtonRegularButton title="Sign Up" />
