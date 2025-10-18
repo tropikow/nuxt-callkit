@@ -4,8 +4,8 @@ const destroyAuth = () => {
   useRouter().push('/auth')
 }
 
-const initAuth = () => {
-  useRouter().push('/main')
+const initAuth = async () => {  
+  useRouter().push('/main')    
 }
 
 export { destroyAuth, initAuth }

@@ -1,10 +1,11 @@
-<script setup lang="ts">
+<script setup lang="ts">  
   import { initAuth } from '#imports';
+  import { createClient } from '@supabase/supabase-js';
   const router = useRouter()
   const redirectToRecoverPage = () => {
     router.push('/recoverPassword')
-  }
-</script>
+  }  
+</script> 
 <template>
   <div class="background">
     <span class="title">Sign in to ConnectCALL</span>        
@@ -15,6 +16,7 @@
       </div>
       <ButtonRegularButton title="Sign In" @click="initAuth" />
     </div>
+
   </div>
 </template>
 <style scoped>
