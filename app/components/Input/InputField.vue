@@ -9,7 +9,7 @@
 <template>
   <div class="inputContainer">
     <IconsMail v-if="icon === 'email'"/>
-    <input :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" />
+    <input :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" @change="$emit('value', )" />
   </div>
 </template>
 <style scoped>
