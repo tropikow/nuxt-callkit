@@ -1,7 +1,15 @@
+<script setup lang="ts">
+  const props = defineProps({
+    type: String,
+    placeholder: String,
+    icon: String
+  })
+  const { type = 'email', placeholder = 'Email Address', icon = 'email' } = props;  
+</script>
 <template>
   <div class="inputContainer">
-    <IconsMail />
-    <input type="email" placeholder="Email Address" style="font-size: small;" />
+    <IconsMail v-if="icon === 'email'"/>
+    <input :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" />
   </div>
 </template>
 <style scoped>

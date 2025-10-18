@@ -5,6 +5,9 @@
   const redirectToRecoverPage = () => {
     router.push('/recoverPassword')
   }  
+  const redirectToSignUp = () => {
+    router.push('/signUp')
+  }
 </script> 
 <template>
   <div class="background">
@@ -15,6 +18,7 @@
         <ButtonLinkButton title="Forgot Password?" @click="redirectToRecoverPage" />
       </div>
       <ButtonRegularButton title="Sign In" @click="initAuth" />
+      <ButtonRegularButton title="Register" @click="redirectToSignUp" backgroundColor="white" />
     </div>
 
   </div>

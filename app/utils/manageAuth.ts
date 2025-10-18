@@ -4,7 +4,7 @@ const destroyAuth = () => {
   useRouter().push('/auth')
 }
 
-const initAuth = async () => {  
+const initAuth = async (email: string, password: string) => {   
   useRouter().push('/main')    
 }
 

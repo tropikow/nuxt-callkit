@@ -15,7 +15,15 @@ export default defineNuxtConfig({
     key: process.env.SUPABASE_KEY,
     redirectOptions: {
       login: '/auth',
-      callback: '/main'
-    }
+      callback: '/main',
+      exclude: ['/signUp','/recoverPassword']
+    },    
   },  
+  app: {
+    head: {
+      link: [
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap' }
+      ]
+    }
+  }
 })
