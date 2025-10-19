@@ -1,6 +1,11 @@
 <script setup lang="ts">
+  import type { Database } from '~~/types/supabase'
   import * as yup from 'yup'
   import { useField, useForm } from 'vee-validate'
+
+  type UserInsert = Database['public']['Tables']['users']['Insert']
+  
+  const supabase = useSupabaseClient<Database>()
   const validationSchema = yup.object({
     name: yup.string().required('Name is required').min(2, 'Name mus be at least 2 characters'),
     email: yup.string().required('Email is required').email('Please enter a valid email address'),
@@ -23,10 +28,44 @@
       showAlert.value = false
       globalError.value = ''
       console.log(values)
+      const { data, error } = await supabase.auth.signUp({
+        email: values.email,
+        password: values.password,
+        options: {
+          data: {
+            full_name: values.name,            
+          },
+          emailRedirectTo: `${location.origin}/main`
+        }       
+      })
+      if(data.user) {
+        console.log(data.user)
+      }
+      if(error) {
+        console.log(error)
+      }
+      if(data.user?.id) {
+        await saveUserData(data.user.id)
+      }
     } catch(error) {
       console.log(error)
     }
   })
+  const saveUserData = async (uid: string) => {    
+  const { data, error } = await supabase
+    .from('users')
+    .insert([
+      {
+        name: name.value,
+        email: email.value,
+        phone_number: phoneNumber.value,
+        uid: uid
+      } as UserInsert
+    ])
+    .select()
+    console.log(data)
+    console.log(error)
+  }
 </script>
 <template>
   <div class="signUpBackground">

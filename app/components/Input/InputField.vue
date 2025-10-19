@@ -5,12 +5,9 @@
     icon: String,
     modelValue: String,
     ref: String
-  })
-  
+  })  
   const emit = defineEmits(['update:modelValue', 'blur', 'focus'])
-  
-  const { type = 'email', placeholder = 'Email Address', icon = 'email', ref } = props;
-  
+  const { type = 'email', placeholder = 'Email Address', icon = 'email', ref } = props;  
   const handleInput = (event: Event) => {
     const target = event.target as HTMLInputElement
     emit('update:modelValue', target.value)
