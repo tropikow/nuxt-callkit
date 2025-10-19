@@ -3,14 +3,23 @@
     type: String,
     placeholder: String,
     icon: String,
-    value: String
+    modelValue: String,
+    ref: String
   })
-  const { type = 'email', placeholder = 'Email Address', icon = 'email' } = props;    
+  
+  const emit = defineEmits(['update:modelValue', 'blur', 'focus'])
+  
+  const { type = 'email', placeholder = 'Email Address', icon = 'email', ref } = props;
+  
+  const handleInput = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    emit('update:modelValue', target.value)
+  }
 </script>
 <template>
   <div class="inputContainer">
     <IconsMail v-if="icon === 'email'"/>
-    <input :value="value" :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" @input="$emit('input', $event)" @blur="$emit('focus')" />
+    <input :value="modelValue" :ref="ref" :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" @input="handleInput" @blur="$emit('blur')" @focus="$emit('focus')" />
   </div>
 </template>
 <style scoped>
