@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { object, string } from 'yup'
   const email = ref<string>('')
   const password = ref<string>('')  
   const confirmPassword = ref<string>('')
@@ -20,6 +21,14 @@
       console.log('non')
     }
   }
+  const fetchSignUp = async () => {
+
+  }
+  let userSchema = object({
+    email: string().required(),
+    phoneNumber: string().required()
+  })
+  let user = await userSchema.validate(await fetchSignUp)
 </script>
 <template>
   <div class="signUpBackground">
@@ -31,7 +40,7 @@
         <InputField type="password" placeholder="Confirm Password" icon="" @input="handleConfirmPassword" @blur="validatePassword" />
         <InputField type="tel" placeholder="Phone Number" icon="" @input="handlePhoneNumber" />
         <span class="label" style="line-height: 18px">Your information is used solely for security and authentication purposes within ConnectCALL. You have full control over your data, including the option to delete it any time.</span>
-        <ButtonRegularButton title="Sign Up" />
+        <ButtonRegularButton title="Sign Up" @click="user" />
       </div>
       <div style="display: flex; gap: 5px;">
         <span class="label">Already have account?</span>
