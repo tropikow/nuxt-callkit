@@ -66,9 +66,7 @@
       alert(`An error has ocurred, please contact the administrator: ${error.code}`)
       return
     }
-    if(data) {
-      const user = data as userAuthenticated 
-      store.setUser(user)   
+    if(data) {      
       showSuccess.value = true   
     }        
   }  
