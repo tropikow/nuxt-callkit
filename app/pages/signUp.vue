@@ -2,6 +2,10 @@
   import type { Database } from '~~/types/supabase'
   import * as yup from 'yup'
   import { useField, useForm } from 'vee-validate'
+  import { useAuthenticationStore } from '@/stores/authentication'
+  import type { userAuthenticated } from '~/types/authentication'
+
+  const store = useAuthenticationStore()  
 
   type UserInsert = Database['public']['Tables']['users']['Insert']
   
@@ -23,11 +27,11 @@
   const { value: phoneNumber, errorMessage: phoneNumberError } = useField<string>('phoneNumber')
   const globalError = ref<string>('')
   const showAlert = ref<boolean>(false)
+  const showSuccess = ref<boolean>(false)
   const onSubmit = handleSubmit(async (values) => {
     try {
       showAlert.value = false
-      globalError.value = ''
-      console.log(values)
+      globalError.value = ''      
       const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
@@ -37,13 +41,7 @@
           },
           emailRedirectTo: `${location.origin}/main`
         }       
-      })
-      if(data.user) {
-        console.log(data.user)
-      }
-      if(error) {
-        console.log(error)
-      }
+      })   
       if(data.user?.id) {
         await saveUserData(data.user.id)
       }
@@ -51,21 +49,29 @@
       console.log(error)
     }
   })
-  const saveUserData = async (uid: string) => {    
-  const { data, error } = await supabase
-    .from('users')
-    .insert([
-      {
-        name: name.value,
-        email: email.value,
-        phone_number: phoneNumber.value,
-        uid: uid
-      } as UserInsert
-    ])
-    .select()
-    console.log(data)
-    console.log(error)
-  }
+  const saveUserData = async (uid: string) => {
+    const { data, error } = await supabase
+      .from('users')
+      .insert([
+        {
+          name: name.value,
+          email: email.value,
+          phone_number: phoneNumber.value,
+          uid: uid
+        } as UserInsert
+      ])
+      .select()
+      .single()  
+    if(error) {
+      alert(`An error has ocurred, please contact the administrator: ${error.code}`)
+      return
+    }
+    if(data) {
+      const user = data as userAuthenticated 
+      store.setUser(user)   
+      showSuccess.value = true   
+    }        
+  }  
 </script>
 <template>
   <div class="signUpBackground">
@@ -116,7 +122,7 @@
             icon="" 
           />
           <span v-if="phoneNumberError" class="error-message">{{ phoneNumberError }}</span>
-        </div>
+        </div>        
         <span class="label" style="line-height: 18px">
           Your information is used solely for security and authentication purposes within ConnectCALL. 
           You have full control over your data, including the option to delete it any time.
@@ -125,12 +131,13 @@
           {{ globalError }}
         </div>
         <ButtonRegularButton title="Sign Up" type="submit" />
-      </form>
+      </form>      
       <div style="display: flex; gap: 5px;">
         <span class="label">Already have account?</span>
         <ButtonLinkButton title="Sign In" @click="() => $router.push('/auth')" />
       </div>
     </div>
+    <ModalCheckEmail v-if="showSuccess" />
   </div>
 </template>
 <style scoped>
