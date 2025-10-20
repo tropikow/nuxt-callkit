@@ -1,3 +1,9 @@
+<script setup lang="ts">
+  const router = useRouter()
+  const redirectToSupport = () => {
+    router.push('/support')
+  }
+</script>
 <template>
   <div class="backgroundCheckEmail">
     <div class="checkEmailContainer">
@@ -7,7 +13,7 @@
       <span class="title">Check your email</span>
       <span class="label">We've sent a confirmation link to your email address. Please check your inbox and click the link to complete your registration.</span>
       <ButtonRegularButton title="Resend Email" />      
-      <span class="label">Didn't receive the email? Check your spam folder or <ButtonLinkButton title="contact support" /></span>      
+      <span class="label">Didn't receive the email? Check your spam folder or <ButtonLinkButton title="contact support" @click="redirectToSupport" /></span>      
     </div>
   </div>
 </template>
