@@ -1,6 +1,7 @@
 <script setup lang="ts">  
   import { initAuth } from '#imports';
   import { createClient } from '@supabase/supabase-js';
+  
   const router = useRouter()
   const redirectToRecoverPage = () => {
     router.push('/recoverPassword')
