@@ -16,7 +16,7 @@
 <template>
   <div class="inputContainer">
     <IconsMail v-if="icon === 'email'"/>
-    <input :value="modelValue" :ref="ref" :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" @input="handleInput" @blur="$emit('blur')" @focus="$emit('focus')" />
+    <input :value="modelValue" :ref="ref" :type="type" :placeholder="placeholder" style="font-size: small; background-color: transparent;" @input="handleInput" @blur="$emit('blur')" @focus="$emit('focus')" autocapitalize="true" :autocomplete="type" />
   </div>
 </template>
 <style scoped>
