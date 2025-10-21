@@ -12,13 +12,13 @@
     } else if(token_hash) {
       ({ error } = await supabase.auth.exchangeCodeForSession(token_hash))
     } else {
-      console.log('primer error:', error)
-      // return router.replace('/auth')
+      console.log('error:', error)
+      return router.replace('/auth')
     }
 
     if(error) {
-      console.log('segundo error:', error)
-      // return router.replace('/auth')
+      console.log('error:', error)
+      return router.replace('/auth')
     }
     router.replace('/main')    
   })
