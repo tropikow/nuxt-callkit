@@ -1,8 +1,18 @@
-<script setup lang="ts">
+<script setup lang="ts">  
+  const user = useSupabaseUser()  
+  const availableRedirection = ref<boolean>(false)
+  const props = defineProps({
+    user: Object
+  })
   const router = useRouter()
   const redirectToApp = () => {
     router.push('/main')
   }
+  watch(user,(newuser) => {
+    if(newuser) {
+      //TODO: Get user for available the button action
+    }
+  })
 </script>
 <template>
   <div class="confirmEmailContainer">
