@@ -1,9 +1,11 @@
 <script setup lang="ts">
-  const isAuthenticated = ref<boolean>(false)
   const router = useRouter()
-  if(isAuthenticated.value) {
-    router.push('/main')
-  } else {
-    router.push('/auth')
-  }
+  const user = useSupabaseUser()    
+  watch(user, (newUser) => {
+    if (newUser) {      
+      router.push('/main')
+    } else {    
+      router.push('/auth')
+    }
+  }, { immediate: true })
 </script>

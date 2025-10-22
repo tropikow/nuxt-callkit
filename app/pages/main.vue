@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  import { destroyAuth } from '@/utils/manageAuth'
+  // import { destroyAuth } from '@/utils/manageAuth'
   const status = ref<string>('disconnected')  
   const diadledNumber = ref<any[]>([])
+  const supabase = useSupabaseClient()
+  const router = useRouter()
   const initCall = () => {
     status.value = 'inProgress'
   }
@@ -11,6 +13,14 @@
   const handleClick = (value: any) => {
     if(typeof value === 'string') {
       diadledNumber.value.push(value)
+    }
+  }
+  const destroyAuth = async () => {
+    const { error } = await supabase.auth.signOut()
+    if(error) {
+      console.error('error while running signout:', error)
+      alert(`error while running signout ${error.message}`)
+      router.push('/auth')
     }
   }
 </script>
@@ -53,9 +63,5 @@
     margin-top: 20px;    
     width: 100%;
     gap: 10px;
-  }  
-  .buttonSignOut {
-    color: var(--colorBlue);    
-    cursor: pointer;
-  }
+  }    
 </style>
