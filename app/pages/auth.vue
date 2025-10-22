@@ -1,14 +1,23 @@
 <script setup lang="ts">  
   import { initAuth } from '#imports';
-  import { createClient } from '@supabase/supabase-js';
-  
+    
   const router = useRouter()
+  const isLoading = ref<boolean>(false)
+  const user = useSupabaseUser()  
   const redirectToRecoverPage = () => {
+    isLoading.value = true
     router.push('/recoverPassword')
+    isLoading.value = false
   }  
   const redirectToSignUp = () => {
+    isLoading.value = true
     router.push('/signUp')
+    isLoading.value = false
   }
+  watch(user, u => {
+    if (u) console.log('logueado', u.email)
+    else console.log('sin sesión')
+  })
 </script> 
 <template>
   <div class="background">
@@ -16,7 +25,7 @@
     <div style="display: flex; flex-direction: column; gap: 20px; width: 500px; margin: 20px;">
       <FormsEmailAndPassword />
       <div style="text-align: end;">
-        <ButtonLinkButton title="Forgot Password?" @click="redirectToRecoverPage" />
+        <ButtonLinkButton title="Forgot Password?" @click="redirectToRecoverPage" :isLoading="isLoading" />
       </div>
       <ButtonRegularButton title="Sign In" @click="initAuth" />
       <ButtonRegularButton title="Register" @click="redirectToSignUp" backgroundColor="white" />

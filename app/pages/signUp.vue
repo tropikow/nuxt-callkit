@@ -4,12 +4,12 @@
   import { useField, useForm } from 'vee-validate'
   import { useAuthenticationStore } from '@/stores/authentication'
   import type { userAuthenticated } from '~/types/authentication'
+  
+  type UserInsert = Database['public']['Tables']['users']['Insert']
 
   const store = useAuthenticationStore()  
-
-  type UserInsert = Database['public']['Tables']['users']['Insert']
-  
   const supabase = useSupabaseClient<Database>()
+  const isLoading = ref<boolean>(false)
   const validationSchema = yup.object({
     name: yup.string().required('Name is required').min(2, 'Name mus be at least 2 characters'),
     email: yup.string().required('Email is required').email('Please enter a valid email address'),
@@ -29,6 +29,7 @@
   const showAlert = ref<boolean>(false)
   const showSuccess = ref<boolean>(false)
   const onSubmit = handleSubmit(async (values) => {
+    isLoading.value = true
     try {
       showAlert.value = false
       globalError.value = ''      
@@ -39,7 +40,7 @@
           data: {
             full_name: values.name,            
           },
-          emailRedirectTo: `${location.origin}/main`
+          emailRedirectTo: `${location.origin}/callback`
         }       
       })   
       if(data.user?.id) {
@@ -47,6 +48,8 @@
       }
     } catch(error) {
       console.log(error)
+    } finally {
+      isLoading.value = false
     }
   })
   const saveUserData = async (uid: string) => {
@@ -70,11 +73,18 @@
       showSuccess.value = true   
     }        
   }  
+  onMounted(() => {
+    name.value = 'Jovanny'
+    email.value = 'jovannypersonal@gmail.com'
+    password.value = 'Luhana160800'
+    confirmPassword.value = 'Luhana160800'
+    phoneNumber.value = '3157569760'
+  })
 </script>
 <template>
   <div class="signUpBackground">
     <div class="signUpContainer">
-      <h2 class="title">Create your Account</h2>      
+      <h2 class="title">Create your Account</h2>            
       <form @submit.prevent="onSubmit" class="signUpContain">        
         <div>
           <InputField 
@@ -128,7 +138,7 @@
         <div v-if="showAlert" class="global-error">
           {{ globalError }}
         </div>
-        <ButtonRegularButton title="Sign Up" type="submit" />
+        <ButtonRegularButton title="Sign Up" type="submit" :isLoading="isLoading" />
       </form>      
       <div style="display: flex; gap: 5px;">
         <span class="label">Already have account?</span>
