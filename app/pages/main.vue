@@ -1,9 +1,13 @@
 <script setup lang="ts">
   // import { destroyAuth } from '@/utils/manageAuth'
+  definePageMeta({
+    middleware: 'auth'
+  })
   const status = ref<string>('disconnected')  
   const diadledNumber = ref<any[]>([])
   const supabase = useSupabaseClient()
   const router = useRouter()
+  const user = useSupabaseUser()
   const initCall = () => {
     status.value = 'inProgress'
   }
@@ -23,13 +27,10 @@
     }
     router.push('/auth')
   }
-  onMounted(async () => {
-    const { data, error } = await supabase.auth.getSession()
-    console.log(data)
-    console.log(`error: ${error}`)
-    // if(user) router.push('/main')    
-    // const { data } = await supabase.auth.getUser()
-    // if(data) console.log(data)
+  watch(user,(newuser) => {
+    if(newuser) {
+      console.log(user)
+    }
   })
 </script>
 <template>

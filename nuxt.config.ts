@@ -7,17 +7,20 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
-      supabasePublishableKey: process.env.SUPABASE_KEY
+      supabasePublishableKey: process.env.SUPABASE_KEY,
+
     }
   },
   supabase: {
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY,
+    secretKey: process.env.SUPABASE_SECRET_KEY,
     redirectOptions: {
       login: '/auth',
       callback: '/callback',
-      exclude: ['/signUp','/recoverPassword','/support', '/callback'],      
-    },
+      exclude: ['/signUp','/recoverPassword','/support', '/callback'],
+      include: ['/main','/setting']
+    },    
   },  
   app: {
     head: {

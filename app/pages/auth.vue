@@ -1,8 +1,12 @@
 <script setup lang="ts">      
+  definePageMeta({
+    middleware: 'auth'
+  })
   const router = useRouter()
   const isLoading = ref<boolean>(false)
-  const user = useSupabaseUser()  
   const supabase = useSupabaseClient()
+  const user = useSupabaseUser()  
+  const session = useSupabaseSession()
   const email = ref<string>('')
   const password = ref<string>('')
   const redirectToRecoverPage = () => {
@@ -17,6 +21,8 @@
   }
   const initAuth = async () => {
     try {
+      // const { data } = await $fetch('/api/createClient')
+      // console.log(data)
       isLoading.value = true
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email.value,
@@ -35,11 +41,11 @@
   }
   const handlePassword = (value: string) => {
     password.value = value
-  }  
-  onMounted(async () => {
-    // if(user) router.push('/main')    
-    const { data } = await supabase.auth.getSession()
-    if(data) console.log(data)
+  }    
+  watchEffect(() => {
+    if (user.value) {
+      return navigateTo('/main')
+    }
   })
 </script> 
 <template>

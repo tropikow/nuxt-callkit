@@ -9,3 +9,6 @@
     }
   }, { immediate: true })
 </script>
+<template>
+  <p>cargando</p>
+</template>
