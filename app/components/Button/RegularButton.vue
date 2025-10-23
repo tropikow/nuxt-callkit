@@ -1,17 +1,40 @@
 <script setup lang="ts">
-  //TODO: Resolve name of the prop for the background color (we need a prop to set the display color(between blue and white), and other for status(available and unavaible))
+import type { PropType } from 'vue';
+
+  
+  type TypeButton = "button" | "submit" | "reset" | undefined
   const props = defineProps({
-    title: String,
-    backgroundColor: String,
-    isLoading: Boolean,
-    isAvailable: Boolean
+    title: {
+      type: String,
+      default: '',      
+    },
+    variant: {
+      type: String,
+      default: 'primary',
+      validator: (value: string) => ['primary', 'secondary'].includes(value)
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,      
+    },        
+    isEnabled: {
+      type: Boolean,
+      default: true
+    },
+    type: {
+      type: String as PropType<TypeButton>,
+      default: 'button'      
+    }
   })
-  const { isAvailable = true, title, backgroundColor = 'blue', isLoading } = props;    
+  const { isEnabled, title, variant, isLoading } = props;    
 </script>
-<template>  
-  <button @click="$emit('click')" :style="backgroundColor === 'blue' ? 'background-color: var(--colorBlue); border: none; outline: none;' : 'background-color: white; border: 1px solid var(--colorGrayLight);'" :disabled="isLoading" >
-    <IconsLoader v-if="isLoading" />    
-    <span :style="backgroundColor === 'blue' ? 'color: white' : 'color: var(--primaryText)'">
+<template>    
+  <button @click="$emit('click')" class="styleButton" :class="[
+     variant === 'primary' ? 'stylePrimaryButton' : '',
+     variant === 'secondary' ? 'styleSecondaryButton' : ''
+  ]" :disabled="!isEnabled" :type="type" :style="isEnabled === false ? 'background-color: var(--colorGrayLight); cursor:not-allowed ' : ''" >
+    <IconsLoader v-if="isLoading" />
+    <span :style="variant === 'primary' ? 'color: white' : 'color: var(--primaryText)'">
       {{ title }}
     </span>
   </button>
@@ -29,5 +52,16 @@
   }
   button > span {    
     color: white;    
+  }
+  .styleButton {
+    border: none;
+    outline: none;
+  }
+  .stylePrimaryButton {
+    background-color: var(--colorBlue);    
+  }
+  .styleSecondaryButton {
+    background-color: white;
+    border: 1px solid var(--colorGrayLight);    
   }
 </style>

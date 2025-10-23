@@ -1,26 +1,16 @@
-<script setup lang="ts">  
-  const user = useSupabaseUser()  
-  const availableRedirection = ref<boolean>(false)
-  const props = defineProps({
-    user: Object
-  })
+<script setup lang="ts">        
   const router = useRouter()
   const redirectToApp = () => {
-    router.push('/main')
-  }
-  watch(user,(newuser) => {
-    if(newuser) {
-      //TODO: Get user for available the button action
-    }
-  })
+    router.push('/auth')
+  }   
 </script>
 <template>
   <div class="confirmEmailContainer">
     <IconsCheckedGreen />
     <div class="confirmEmailContainerBody">
-      <span class="title" style="font-size: 24px;">Email Confirmed!</span>
+      <span class="title" style="font-size: 24px;">Email Confirmed!</span>      
       <span class="label">Your account has been successfully activated. You can now start making calls.</span>
-      <ButtonRegularButton title="Go to App" @click="redirectToApp" />    
+      <ButtonRegularButton title="Go to App" :isEnabled="true"  @click="redirectToApp" />    
     </div>
   </div>
 </template>

@@ -1,14 +1,7 @@
 <script setup lang="ts">
   const supabase = useSupabaseClient()  
   const route = useRoute()
-  const router = useRouter()
-  const user = useSupabaseUser()
-    
-  watch(user, (newUser) => {
-    if (newUser) {      
-      router.push('/main')
-    }
-  }, { immediate: true })
+  const router = useRouter()  
   
   onMounted(async () => {    
     const token_hash = route.query.token as string | undefined

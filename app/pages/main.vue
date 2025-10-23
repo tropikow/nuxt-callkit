@@ -20,8 +20,8 @@
     if(error) {
       console.error('error while running signout:', error)
       alert(`error while running signout ${error.message}`)
-      router.push('/auth')
     }
+    router.push('/auth')
   }
 </script>
 <template>

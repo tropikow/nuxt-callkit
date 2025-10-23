@@ -1,8 +1,19 @@
+<script setup lang="ts">
+  const emit = defineEmits(['update:email','update:password'])
+  const handleEmail = (event: Event) => {
+    const target = event.target as HTMLFormElement
+    emit('update:email', target.value)
+  }
+  const handlePassword = (event: Event) => {
+    const target = event.target as HTMLFormElement
+    emit('update:password', target.value)
+  }
+</script>
 <template>
   <div class="loginContainer">
-    <input type="email" placeholder="Email address" />
+    <input type="email" placeholder="Email address" @input="handleEmail" />
     <Divider/>
-    <input type="password" placeholder="Password" />
+    <input type="password" placeholder="Password" @input="handlePassword" />
   </div>
 </template>
 <style scoped>
