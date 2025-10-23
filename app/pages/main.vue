@@ -23,6 +23,14 @@
     }
     router.push('/auth')
   }
+  onMounted(async () => {
+    const { data, error } = await supabase.auth.getSession()
+    console.log(data)
+    console.log(`error: ${error}`)
+    // if(user) router.push('/main')    
+    // const { data } = await supabase.auth.getUser()
+    // if(data) console.log(data)
+  })
 </script>
 <template>
   <div class="background">    

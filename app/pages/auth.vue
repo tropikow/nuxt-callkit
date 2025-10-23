@@ -16,26 +16,35 @@
     isLoading.value = false
   }
   const initAuth = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email.value,
-      password: password.value
-    })
-    if(data) router.push('/main')
-    if(error) alert(error)
+    try {
+      isLoading.value = true
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email.value,
+        password: password.value
+      })
+      if(data) router.push('/main')
+      if(error) throw error
+    } catch (error) {
+      alert(error)
+    } finally {
+      isLoading.value = false
+    }
   }
   const handleEmail = (value: string) => {   
     email.value = value    
   }
   const handlePassword = (value: string) => {
     password.value = value
-  }
-  watch(user, u => {
-    if (u) router.push('/main')    
+  }  
+  onMounted(async () => {
+    // if(user) router.push('/main')    
+    const { data } = await supabase.auth.getSession()
+    if(data) console.log(data)
   })
 </script> 
 <template>
   <div class="background">
-    <span class="title">Sign in to ConnectCALL</span>        
+    <span class="title">Sign in to ConnectCALL u:{{ user }}</span>        
     <div style="display: flex; flex-direction: column; gap: 20px; width: 500px; margin: 20px;">
       <FormsEmailAndPassword @update:email="handleEmail" @update:password="handlePassword" />
       <div style="text-align: end;">
@@ -44,7 +53,6 @@
       <ButtonRegularButton title="Sign In" @click="initAuth" :isLoading="isLoading" />
       <ButtonRegularButton title="Register" variant="secondary" @click="redirectToSignUp" backgroundColor="white" :isLoading="isLoading" />
     </div>
-
   </div>
 </template>
 <style scoped>
